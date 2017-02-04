@@ -1,0 +1,179 @@
+
+/* Empty. Add your own CSS if you like */
+
+.item, .item-divider, .card , .item-body {
+  border:none;
+}
+.mysearch{
+	width: 100%;
+
+}
+.nav-bar-block, .bar {
+  background-color: inherit !important;
+}
+.subheader{
+	
+	    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: horizontal;
+    -moz-flex-direction: horizontal;
+    -ms-flex-direction: horizontal;
+    flex-direction: horizontal;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    justify-content: center;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    border-color: #b2b2b2;
+    background-color: #fff;
+   
+    color: #444;
+    position: absolute;
+    bottom: 0;
+    z-index: 5;
+    width: 100%;
+    height: 49px;
+    border-style: solid;
+    border-top-width: 1px;
+    background-size: 0;
+    line-height: 49px;
+}
+
+.ion-ios-customicon,
+.ion-md-customicon {
+  content: url(../img/adam.jpg);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  vertical-align: bottom;
+  line-height: 0.em;
+    
+}
+.profil{
+   border-radius: 50%;
+   width: 100%;
+   height: 100%;
+   margin-left: 40%;
+
+   margin-right: 0%;
+   margin-top: 0%;
+}
+.col1{
+  
+  margin-right: 1em;
+
+  line-height: 1;
+  margin-left: 3em;
+  margin-right: -1em;
+}
+.row{
+  align-items: top;
+  margin-top: 0%;
+}
+.col:not(.col1){
+  line-height: 1;
+  margin-left: -.2em;
+
+  
+
+}
+
+.button-b{
+  position: absolute;
+  top: 7%;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  left: 50%;
+  border: 1px;
+ 
+  
+
+
+}
+
+
+.section {
+  text-align:center;
+  display: inline-block;
+  padding: .1vw;
+  font-size: 0;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  -ms-flex-direction: column;
+  -webkit-flex-flow: row wrap; 
+  flex-flow: row wrap; 
+  display: -webkit-box;
+  display: flex;
+}
+
+.section > div:nth-of-type(6n+1){
+  clear:both;
+}
+
+.section div{
+  
+   -webkit-box-flex: auto;
+  -ms-flex: auto;
+  flex: auto; 
+  width: 100px; 
+  margin: .1vw; 
+}
+
+.section div img{
+    width: 100%; 
+  height: auto; 
+    
+}
+@media screen and (max-width: 400px) {
+  .section div { margin: 1px; }
+  .section { padding: 0; }
+  
+}
+
+
+
+.section1 {
+  text-align:center;
+  display: inline-block;
+  padding: .1vw;
+  font-size: 0;
+  display: -ms-flexbox;
+  -ms-flex-wrap: wrap;
+  -ms-flex-direction: column;
+  -webkit-flex-flow: row wrap; 
+  flex-flow: row wrap; 
+  display: -webkit-box;
+  display: flex;
+}
+
+.section1 > div:nth-of-type(4n+1){
+  clear:both;
+}
+
+.section1 div{
+  
+   -webkit-box-flex: auto;
+  -ms-flex: auto;
+  flex: auto; 
+  width: 100%; 
+  margin: .1vw; 
+}
+
+.section1 div img{
+    width: 100%; 
+  height: 80%; 
+    
+}
+@media screen and (max-width: 400px) {
+  .section1 div { margin: 1px; }
+  .section1 { padding: 0; }
+  
+}

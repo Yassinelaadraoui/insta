@@ -1,0 +1,54 @@
+
+<ion-view view-title="Yassine Laadraoui" >
+
+	<ion-content>
+	<div class="row">
+	  <div class="col " ><img class="profil" src="../img/adam.jpg"><br></div>
+	  <div class="col  col1  " >
+	  	30<br>Posts
+		</div>
+		
+	  <div class="col col2 ">30<br>Followers</div>
+	  <div class="col   ">30<br>following</div>
+
+	</div>
+	<button class="button button-b button-light">
+	  Edit profil
+	</button>
+	<div style="margin-left: 5%; margin-top: 0%" class="row">
+		<div class="col"> Username</div>
+
+	</div>
+	<div style="margin-left: 5%;" class="row">
+		<div class="col">  <br> bio bio biobiobiobiobiobiobiobio bio <br> <br> </div>
+
+	</div>
+	<div class="bar bar-stable" style="position:relative; margin-top: 0"><h1 class="title">
+		<div class="subheader">
+		        	
+					<a class="tab-item" ui-sref="tab.account" >
+					    People
+					</a>
+		  			<a class="tab-item" >
+		    			Tags
+		  			</a>
+		  			
+		</div>
+
+	</div>
+
+
+		
+			<div class="section1" style=" ">
+	        <div ng-repeat="items in offensiveMasteries" >
+	          <img  src="{{items.image}}" />
+	          <div><p>{{items.description}} cccccccccccc</p></div>
+	          
+	        </div>
+	      </div>
+
+	</ion-content>
+
+
+ 
+</ion-view>
