@@ -35,6 +35,11 @@ angular.module('starter.services', [])
     all: function() {
       return chats;
     },
+    push:function(){
+      var i = chats.length ;
+      
+       
+    },
     remove: function(chat) {
       chats.splice(chats.indexOf(chat), 1);
     },

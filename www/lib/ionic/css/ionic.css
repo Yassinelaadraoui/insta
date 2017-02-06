@@ -2988,25 +2988,16 @@
  * Eric Meyer's Reset CSS v2.0 (http://meyerweb.com/eric/tools/css/reset/)
  * http://cssreset.com
  */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, i, u, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, fieldset,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, fieldset, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video:not(tab) {
   margin: 0;
   padding: 0;
   border: 0;
-  vertical-align: baseline;
+  vertical-align: -webkit-baseline-middle;
   font: inherit;
-  font-size: 100%; }
+  font-size: 100%;
+  color: black;
+  text-align: center;
+  }
 
 ol, ul {
   list-style: none; }
@@ -3572,7 +3563,9 @@ ion-infinite-scroll {
  * --------------------------------------------------
  */
 p {
-  margin: 0 0 10px; }
+  margin: 0 0 10px;
+  z-index: 100;
+  }
 
 small {
   font-size: 85%; }
@@ -3592,9 +3585,10 @@ cite {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
-  font-weight: 500;
+  font-weight: 100;
   font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
-  line-height: 1.2; }
+  line-height: 1.2;
+  }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
   .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
     font-weight: normal;
@@ -3603,8 +3597,9 @@ h1, h2, h3, h4, h5, h6,
 h1, .h1,
 h2, .h2,
 h3, .h3 {
-  margin-top: 20px;
-  margin-bottom: 10px; }
+  margin-top: 0px;
+  margin-bottom: px;
+  }
   h1:first-child, .h1:first-child,
   h2:first-child, .h2:first-child,
   h3:first-child, .h3:first-child {
@@ -4366,7 +4361,8 @@ a.subdued {
   border-style: solid;
   border-top-width: 1px;
   background-size: 0;
-  line-height: 49px; }
+  line-height: 49px;
+  }
   .tabs .tab-item .badge {
     background-color: #444;
     color: #f8f8f8; }
@@ -5114,14 +5110,15 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   max-width: 150px;
   height: 100%;
   color: inherit;
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: 400;
   font-size: 14px;
   font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
-  opacity: 0.7; }
+  opacity: 0.7;
+  }
   .tab-item:hover {
     cursor: pointer; }
   .tab-item.tab-hidden {
@@ -5245,7 +5242,9 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   display: -moz-flex;
   display: -ms-flexbox;
   display: flex;
-  padding: 0; }
+  padding: 0;
+  text-align: left;
+  }
   .item.tabs .icon:before {
     position: relative; }
 
@@ -5256,7 +5255,8 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   pointer-events: none; }
 
 .nav-bar-tabs-top.hide ~ .view-container .tabs-top .tabs {
-  top: 0; }
+  display: none;
+  }
 
 .pane[hide-nav-bar="true"] .has-tabs-top {
   top: 49px; }
@@ -5708,7 +5708,8 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
   padding: 16px;
   border-width: 1px;
   border-style: solid;
-  font-size: 16px; }
+  font-size: 16px;
+  }
   .item h2 {
     margin: 0 0 2px 0;
     font-size: 16px;
@@ -5972,7 +5973,8 @@ ion-tabs.tabs-striped.tabs-color-active-dark .tab-item.tab-item-active, ion-tabs
 .item-content p {
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap; }
+  white-space: nowrap;
+  }
 
 a.item {
   color: inherit;
@@ -6305,7 +6307,8 @@ button.item.item-button-right {
 .item-avatar-left,
 .item-avatar-left .item-content {
   padding-left: 72px;
-  min-height: 72px; }
+  min-height: 2px;
+  }
   .item-avatar > img:first-child,
   .item-avatar .item-image,
   .item-avatar .item-content > img:first-child,

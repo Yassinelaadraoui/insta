@@ -16,9 +16,9 @@
       the content is from a card-body consisting of an image and paragraph text. The footer
       consists of tabs, icons aligned left, within the card-footer.
     </p>
-    <p>
-      <a href="#" class="subdued">1 Like</a>
-      <a href="#" class="subdued">5 Comments</a>
+    <p  ng-init="liked=0 " >{{likes}}
+    <a ng-init="likes=5"  ng-click="liked=!liked;  " ><i  ng-if="liked==0" class="ion-ios-heart-outline"></i> <i  ng-if="liked==1" class="ion-ios-heart"></i></a>
+      <a ui-sref="tab.chat-detail" class="subdued"> Comments</a>
     </p>
   </div>
 

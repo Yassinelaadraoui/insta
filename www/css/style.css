@@ -8,6 +8,13 @@
 	width: 100%;
 
 }
+.commentheader{
+  overflow: left;
+  text-align: left;
+}
+.hide{
+  display: none;
+}
 .nav-bar-block, .bar {
   background-color: inherit !important;
 }
@@ -138,12 +145,17 @@
   
 }
 
-
-
+h1, h2, h3, p, div{
+  text-align: left;
+}
+.like-comment{
+  text-align: left;
+  overflow: left;
+}
 .section1 {
   text-align:center;
   display: inline-block;
-  padding: .1vw;
+  padding: 0vw;
   font-size: 0;
   display: -ms-flexbox;
   -ms-flex-wrap: wrap;
@@ -159,21 +171,22 @@
 }
 
 .section1 div{
-  
-   -webkit-box-flex: auto;
+  -webkit-box-flex: auto;
   -ms-flex: auto;
-  flex: auto; 
-  width: 100%; 
-  margin: .1vw; 
+  flex: auto;
+  width: 100%;
+  margin:0px;
+  padding: 0px;
+
 }
 
 .section1 div img{
     width: 100%; 
-  height: 80%; 
+  height: 90%; 
     
 }
 @media screen and (max-width: 400px) {
-  .section1 div { margin: 1px; }
+  .section1 div { margin: 0px; }
   .section1 { padding: 0; }
   
 }

@@ -1,6 +1,7 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {
+.controller('DashCtrl', function($scope ,$stateParams, Chats ) {
+  $scope.comment = Chats.get($stateParams.chatId);
   $scope.posts=[{
     post_id:1,
     user_name:"Homie",
@@ -76,7 +77,7 @@ angular.module('starter.controllers', [])
     image: "http://img2.wikia.nocookie.net/__cb20131121235650/leagueoflegends/images/f/f5/Sorcery_mastery_s4.png",
     currentPoint: "0",
     endPoint: "4",
-    description : "bla bla bla bla bla bla bla "
+    description : 'bla bla bla bla bla bla bla '
   }, {
     image: "http://img4.wikia.nocookie.net/__cb20131121235724/leagueoflegends/images/5/58/Butcher_mastery_s4.png",
     currentPoint: "0",
@@ -112,6 +113,54 @@ angular.module('starter.controllers', [])
   $scope.remove = function(chat) {
     Chats.remove(chat);
   };
+})
+.directive('hideTabs', function($rootScope) {
+  return {
+      restrict: 'A',
+      link: function($scope, $el) {
+          $rootScope.hideTabs = 'tabs-item-hide';
+          $scope.$on('$destroy', function() {
+              $rootScope.hideTabs = '';
+          });
+      }
+  };
+})
+
+.controller('mainCtrl', function($scope, $ionicPlatform, $cordovaFileTransfer, $cordovaCamera, $http){    
+    $scope.takePhoto = function()
+    {
+        var options =  {
+            quality: 50,
+            destinationType: Camera.DestinationType.FILE_URI,            
+            sourceType: Camera.PictureSourceType.CAMERA,
+            encodingType: Camera.EncodingType.JPEG,
+            mediaType: Camera.MediaType.PICTURE             
+        };
+
+        $ionicPlatform.ready(function() {
+            $cordovaCamera.getPicture(options).then(function(imageData) {
+                $scope.picture = imageData;
+            }, function(err) {
+                  // error
+            });
+        });
+    }
+  })
+
+.controller('commentCtrl', function($scope, $stateParams, Chats) {
+  $scope.comment = Chats.all();
+  $scope.addcomment="ddd";
+  $scope.send = function(){
+      
+      $scope.comment.push({
+                id:5,
+                name: "yassine",
+                lastText: $scope.addcomment,
+                face: "img/max.png"
+            });  // add a new object
+      
+  }
+
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

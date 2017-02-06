@@ -1,0 +1,42 @@
+<ion-view has-header="true"  hide-nav-bar="true" title="Comments">
+ 	<div class="bar commentheader bar-header">
+ 	<a href="#/tab/dash"><i  class="ion-chevron-left"></i></a>
+  <h1 class="title">Header</h1>
+</div>
+<ion-content    >
+ 	<div style="margin-top: 10%">
+	 	<div style="margin-top: 1%" ng-repeat="items in comment">
+				<div   class="item item-avatar">
+				    <img src="{{items.face}}">
+				    <h2 style="">{{items.name}} :  {{items.lastText}}</h2>
+				    
+				    
+	  			</div>
+				
+		       
+		</div>
+	</div>	
+		
+		<div  style="margin-top: 70%" class="list">
+		
+	  <label class="item item-input">
+	    <input ng-model="addcomment" type="text" placeholder="First Name">
+		
+	  </label>
+  	<button ng-click="send()">Send</button>
+
+
+  	</div>
+ </ion-content>
+  	 <ion-footer-bar   align-title="left" class="item-input-inset">
+      <label   class="item-input-wrapper">
+        
+        <input   type="search" placeholder="Search">
+        <i   class="icon ion-ios7-search placeholder-icon"></i>
+      </label>
+      <button    class="button button-clear">
+        Cancel
+      </button>
+    </ion-footer-bar> 
+
+</ion-view>

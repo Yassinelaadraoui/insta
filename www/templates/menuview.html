@@ -23,7 +23,7 @@
 		<div class="col">  <br> bio bio biobiobiobiobiobiobiobio bio <br> <br> </div>
 
 	</div>
-	<div class="bar bar-stable" style="position:relative; margin-top: 0"><h1 class="title">
+	<div class="bar bar-stable " style="position:relative; margin-top: 0"><h1 class="title">
 		<div class="subheader">
 		        	
 					<a class="tab-item" ui-sref="tab.account" >
@@ -37,15 +37,39 @@
 
 	</div>
 
+		<div ng-repeat="items in offensiveMasteries">
+			<div   class="item item-avatar">
+			    <img src="{{items.image}}">
+			    <h2>  ccccsd</h2>
+			    
+			    <p>November 05, 1955</p>
+  			</div>
+			<div  class="section1" style=" ">
 
-		
-			<div class="section1" style=" ">
-	        <div ng-repeat="items in offensiveMasteries" >
+	        <div  >
 	          <img  src="{{items.image}}" />
-	          <div><p>{{items.description}} cccccccccccc</p></div>
+	          
 	          
 	        </div>
+	       
 	      </div>
+	    <div style="margin-top: -10%; width: 100%; left: 0; padding: 0px; " class="list stable-bg like-comment"> 
+	
+				<div class="item tabs tabs-secondary tabs-icon"> 
+					<a class="tab-item " style=""> 
+						<i class="icon ion-ios-heart-outline" href="#" icon-on="ion-heart" icon-off="ion-ios-heart-outline"></i>
+					</a>
+					<a ui-sref="tab.chat-detail" class="tab-item" data-ink-color="#336699" data-ink-opacity="0.5">
+					 	 <i class="icon ion-android-chat"></i> 
+					</a> 
+					
+				</div> 
+		
+		</div>
+
+
+
+</div>
 
 	</ion-content>
 
