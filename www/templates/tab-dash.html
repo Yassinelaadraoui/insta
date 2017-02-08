@@ -1,20 +1,20 @@
-<ion-view style=" " view-title="Instagram">
+<ion-view ng-controller="DashCtrl"  data-ng-init=" fetch()" style=" " view-title="Instagram">
   <ion-content class="padding">
-    <div    class="list card-clear">
+    
+    <div  ng-repeat="post in posts | orderBy:'$index':true"    class="list card-clear">
 
   <div   class="item item-avatar">
-    <img src="mcfly.jpg">
-    <h2>   {{posts[0].user_name}}</h2>
+    <img src="{{post.url}}">
+    <h2 >   {{ post.username}} </h2>
     
     <p>November 05, 1955</p>
   </div>
 
   <div    class="item item-body">
-    <img class="full-image" src="delorean.jpg">
+    <img width="100%" height="80%" src="{{post.url}}">
+
     <p style="">
-      This is a "Facebook" styled Card. The header is created from a Thumbnail List item,
-      the content is from a card-body consisting of an image and paragraph text. The footer
-      consists of tabs, icons aligned left, within the card-footer.
+      {{post.caption}}
     </p>
     <p  ng-init="liked=0 " >{{likes}}
     <a ng-init="likes=5"  ng-click="liked=!liked;  " ><i  ng-if="liked==0" class="ion-ios-heart-outline"></i> <i  ng-if="liked==1" class="ion-ios-heart"></i></a>
@@ -23,5 +23,6 @@
   </div>
 
 </div>
+  
   </ion-content>
 </ion-view>

@@ -1,31 +1,47 @@
-<ion-view view-title="camera">
-  <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-        <button class="button button-positive" ng-click="takePhoto()">
-          Take photo
-        </button>
-        <div>
-          Picture uri:<br>
-          {{ picture }}
-          <div>
-            <img ng-src="{{picture}}" style="max-width: 100%">
-          </div>
+<ion-view data-ng-init="choosePhoto();"  view-title="Post">
+<ion-nav-buttons >
+    <div class="bar bar-header  ">
+
+      
+        <a ui-sref="tab.post">
+          <i class="icon ion-ios-arrow-back placeholder-icon"></i>
+         </a>
+        
+      
+    </div> 
+
+  </ion-nav-buttons>
+   <ion-content padding="true" class="manual-ios-statusbar-padding">
+    <div class="list card" style="margin-top: 30%;">
+
+      <div  class="item item-divider" style="padding: 5%;">
+        <h3 style="text-align: center;">Select method</h3>
+      </div>
+
+     
+        <div class="row">
+            <div class="col">
+                <button class="button button-icon" ng-click="takePhoto()">
+                    <i class="ion-ios-camera" style="font-size: 80px;"></i><br> Take a photo
+                </button>
+            </div>
+
+            <div class="col">
+            <
+
+                <button  class="button button-icon" ng-click=""  >
+                    <i  class="ion-ios-camera" style="font-size: 80px;"></i><br> Gallery
+                </button>
+              
+            </div>
         </div>
-        <button class="button button-balanced" ng-click="uploadPhoto()" ng-if="picture">
-          Upload photo
-        </button>
-        <div>
-          {{ uploadResults }}
-        </div>
-        <button class="button button-balanced" ng-click="testConnection()">
-          Test server connection
-        </button>
-        <div>
-          {{ serverConnection }}
-        </div>
-      </ion-content>
-    </ion-pane>
+     
+
+    </div>
+     <div >
+        <img width="300px" height="300px" ng-src="{{lastPhoto}}">
+        {{lastPhoto}}
+        {{lastCation}}
+      </div>
+  </ion-content>
 </ion-view>

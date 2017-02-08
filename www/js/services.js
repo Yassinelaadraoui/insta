@@ -30,13 +30,34 @@ angular.module('starter.services', [])
     lastText: 'This is wicked good ice cream.',
     face: 'img/mike.png'
   }];
-
+  var url= "rien";
+  var caption ="rien";
+  var tag  ="rien";
   return {
+    getUrl : function(){
+      return url;
+    },
+     getCaption : function(){
+      return caption;
+    },
+     getTag : function(){
+      return tag;
+    },
     all: function() {
       return chats;
     },
-    push:function(){
-      var i = chats.length ;
+    pushUrl:function( message){
+      url = message
+      ;      
+       
+    },
+    pushCaption:function( message){
+      caption = message;
+      
+       
+    },
+    pushTag:function( message){
+      tag = message;
       
        
     },

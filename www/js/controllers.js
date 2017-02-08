@@ -1,39 +1,137 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope ,$stateParams, Chats ) {
+.controller('DashCtrl', function($scope ,$stateParams, Chats, $http ) {
   $scope.comment = Chats.get($stateParams.chatId);
-  $scope.posts=[{
-    post_id:1,
-    user_name:"Homie",
-    date:76,
-    caption:"yooooo niggga i ain't about that life anymore",
-    photo_url:""
-},
-{
-    post_id:"",
-    user_name:"dddddddddddddd",
-    date:76,
-    caption:"",
-    photo_url:""
-},
-{
-    post_id:"",
-    user_name:-5,
-    date:76,
-    caption:"",
-    photo_url:""
+  $scope.user= {
+    username:"nigga",
+    caption : "damn",
+    url: "http://www.javabeat.net/wp-content/uploads/2015/09/Express-2.jpg",
+    likes:5};
+    $scope.send =function(){
+      $http({
+      url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
+      method: 'POST',
+      data: $scope.user,
+      headers: {'Content-Type': 'application/json'}
+  
+});
+    };
+   $scope.fetch =function(){
+  
+  $http.get("https://tranquil-coast-83560.herokuapp.com/weather")
+  .then(function(response){ 
+
+          
+    $scope.posts = response.data.data;
+
+    
+    
+  });
+
+
+ 
 }
-];
+  
 
 
 })
-.controller('CameraCtrl', function($scope, $state) {
 
-   $scope.gotosearch = function() {
-    console.log("damn");
-    $state.go('tab.search');
-};
+.controller('PostCtrl', function($scope ,$stateParams, $http, $rootScope) {
+    $scope.lastPhoto = $rootScope.imgURI;
+    $scope.lastCaption="";
+    $scope.lastTag="";
+    $scope.user= {
+              username: "Yassine Laadraoui",
+              caption : $scope.lastCaption,
+              url: $scope.lastPhoto,
+              likes:5};
+    $scope.send =function(){
+
+        $http({
+        url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
+        method: 'POST',
+        data: $scope.user,
+        headers: {'Content-Type': 'application/json'}
+    
+        });
+        $state.go(tab.dash);
+    }
+
+    
 })
+
+.controller('CameraCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$rootScope', '$state',
+// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats) {
+     $scope.user= {
+              username:"nigga",
+              caption : "damn",
+              url: $rootScope.imgURI,
+              likes:5};
+     $scope.send =function(){
+      $http({
+      url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
+      method: 'POST',
+      data: $scope.user,
+      headers: {'Content-Type': 'application/json'}
+  
+      });
+    };
+     $scope.lastPhoto ="nothing here yet ";
+     
+     $scope.lastCaption="nothing here ";
+     $scope.lastTag = "";
+     
+    $scope.choosePhoto = function() {
+        console.log('choosePhoto is working woohoo');
+
+        //Gallery
+        var options = {
+            quality: 80,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 500,
+            targetHeight: 700,
+            correctOrientation: true,
+            saveToPhotoAlbum: true
+        };
+
+        $cordovaCamera.getPicture(options).then(function(photo){
+            $rootScope.imgURI = "data:image/jpeg;base64," + photo;
+            $scope.lastPhoto = "data:image/jpeg;base64," + photo;
+           
+
+            
+        })
+    }
+    $scope.takePhoto = function() {
+        console.log('takePhoto is working woohoo');
+        //Camera Plugin
+        var options = {
+            quality: 80,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            allowEdit: true,
+            encodingType: Camera.EncodingType.JPEG,
+            targetWidth: 500,
+            targetHeight: 700,
+            correctOrientation: true,
+            saveToPhotoAlbum: true
+        };
+
+        $cordovaCamera.getPicture(options).then(function(photo){
+            $rootScope.imgURI = "data:image/jpeg;base64," + photo;
+            
+        })
+    }
+
+    
+
+}])
 .controller('SearchCtrl', function($scope) {})
 .controller('ChatsCtrl', function($scope, Chats ,$state) {
   // With the new view caching in Ionic, Controllers are only called
