@@ -133,8 +133,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',  
         controller: 'AccountCtrl'
       }
     }
+  })
+.state('tab.accountedit', {
+    cache: false,
+    url: '/accountedit',
+    views: {
+      'tab-accountx': {
+        templateUrl: 'templates/editprofil.html',
+        controller: 'AccountCtrl'
+      }
+    }
   });
-
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 

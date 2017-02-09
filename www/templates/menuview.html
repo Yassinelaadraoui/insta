@@ -12,26 +12,28 @@
 	  <div class="col   ">30<br>following</div>
 
 	</div>
-	<button class="button button-b button-light">
+	<button style="margin-top: 0" class="button button-b button-light">
 	  Edit profil
 	</button>
 	<div style="margin-left: 5%; margin-top: 0%" class="row">
-		<div class="col"> Username</div>
+		<div class="col"><h4>Yassine </h4> </div>
 
 	</div>
 	<div style="margin-left: 5%;" class="row">
-		<div class="col">  <br> bio bio biobiobiobiobiobiobiobio bio <br> <br> </div>
+		<div> Student, IT, Moroccan <br> nothing interesting to see here <br> <br> </div>
 
 	</div>
 	<div class="bar bar-stable " style="position:relative; margin-top: 0"><h1 class="title">
 		<div class="subheader">
 		        	
 					<a class="tab-item" ui-sref="tab.account" >
-					    People
-					</a>
-		  			<a class="tab-item" >
-		    			Tags
-		  			</a>
+				    <i style="font-size: 30px" class="ion-grid"></i>
+				</a>
+	  			<a class="tab-item"  ui-sref="tab.tabx">
+	    			
+    				<i style="font-size: 30px" class="ion-navicon"></i>
+  
+	  			</a>
 		  			
 		</div>
 
@@ -55,15 +57,11 @@
 	      </div>
 	    <div style="margin-top: -10%; width: 100%; left: 0; padding: 0px; " class="list stable-bg like-comment"> 
 	
-				<div class="item tabs tabs-secondary tabs-icon"> 
-					<a class="tab-item " style=""> 
-						<i class="icon ion-ios-heart-outline" href="#" icon-on="ion-heart" icon-off="ion-ios-heart-outline"></i>
-					</a>
-					<a ui-sref="tab.chat-detail" class="tab-item" data-ink-color="#336699" data-ink-opacity="0.5">
-					 	 <i class="icon ion-android-chat"></i> 
-					</a> 
-					
-				</div> 
+				<div  style="border-top: 1px solid #e4e4e4; border-bottom: 0px; font-size: 30px;padding-left: 10px; margin-bottom: 20%; "   ng-init="liked=0 " >
+    <a style="vertical-align: top"  ng-init="likes=5"  ng-click="liked=!liked;  " ><i  style="color:red;" ng-if="liked==0" class="ion-ios-heart-outline"></i> <i  style="color:red;"  ng-if="liked==1" class="ion-ios-heart"></i></a>
+   
+        <a style="vertical-align: top" ui-sref="tab.chat-detail" class="subdued"> <i class="ion-ios-chatbubble-outline"></i></a>
+    </div>
 		
 		</div>
 

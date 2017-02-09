@@ -65,6 +65,10 @@ angular.module('starter.controllers', [])
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats) {
+     $scope.lastPhoto ="http://host.sonspring.com/domgallery/img/placeholder.gif";
+     
+     $scope.lastCaption="nothing here ";
+     $scope.lastTag = "";
      $scope.user= {
               username:"nigga",
               caption : "damn",
@@ -79,13 +83,10 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
   
       });
     };
-     $scope.lastPhoto ="nothing here yet ";
      
-     $scope.lastCaption="nothing here ";
-     $scope.lastTag = "";
      
     $scope.choosePhoto = function() {
-        console.log('choosePhoto is working woohoo');
+        
 
         //Gallery
         var options = {
@@ -103,7 +104,7 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
         $cordovaCamera.getPicture(options).then(function(photo){
             $rootScope.imgURI = "data:image/jpeg;base64," + photo;
             $scope.lastPhoto = "data:image/jpeg;base64," + photo;
-           
+           $go.state(tab.post);
 
             
         })
@@ -247,9 +248,9 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
 
 .controller('commentCtrl', function($scope, $stateParams, Chats) {
   $scope.comment = Chats.all();
-  $scope.addcomment="ddd";
+  $scope.addcomment="";
   $scope.send = function(){
-      
+     
       $scope.comment.push({
                 id:5,
                 name: "yassine",

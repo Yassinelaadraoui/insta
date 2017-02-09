@@ -3,7 +3,7 @@
 
 <ion-content>
 <div class="row">
-  <div class="col " ><img class="profil" src="../img/adam.jpg"><br></div>
+  <div class="col " ><img class="profil" width="50%" height="50%" src="../img/adam.jpg"><br></div>
   <div class="col  col1  " >
   	30<br>Posts
 	</div>
@@ -12,33 +12,33 @@
   <div class="col   ">30<br>following</div>
 
 </div>
-<button class="button button-b button-light">
+<button ui-sref="tab.accountedit" class="button button-b button-light">
   Edit profil
 </button>
 <div style="margin-left: 5%; margin-top: 0%" class="row">
-	<div class="col"> Username</div>
+	<div class="col"><h4>Yassine </h4> </div>
 
 </div>
 <div style="margin-left: 5%;" class="row">
-	<div class="col"> bio bio biobiobiobiobiobiobio <br> bio bio biobiobiobiobiobiobiobio bio <br> <br> </div>
+	<div> Student, IT, Moroccan <br> nothing interesting to see here <br> <br> </div>
 
 </div>
 <div class="bar bar-stable" style="position:relative; margin-top: 0"><h1 class="title">
-	<div class="subheader">
+	<div  class="subheader">
 	        	
 				<a class="tab-item" ui-sref="tab.account" >
-				    People
+				    <i style="font-size: 30px" class="ion-grid"></i>
 				</a>
 	  			<a class="tab-item"  ui-sref="tab.tabx">
 	    			
-    				tags
+    				<i style="font-size: 30px" class="ion-navicon"></i>
   
 	  			</a>
 	  			
 	</div>
 
 </h1></div>
-	<div class="section" style=" ">
+	<div class="section" style="margin-bottom: 10% ">
     <div ng-repeat="items in offensiveMasteries" >
       <img  src="{{items.image}}" />
       
