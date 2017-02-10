@@ -3,8 +3,8 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope ,$stateParams, Chats, $http ) {
   $scope.comment = Chats.get($stateParams.chatId);
   $scope.user= {
-    username:"nigga",
-    caption : "damn",
+    username:"yassine",
+    caption : "",
     url: "http://www.javabeat.net/wp-content/uploads/2015/09/Express-2.jpg",
     likes:5};
     $scope.send =function(){
@@ -36,7 +36,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PostCtrl', function($scope ,$stateParams, $http, $rootScope) {
+.controller('PostCtrl', function($scope ,$stateParams, $http, $rootScope, $state) {
     $scope.lastPhoto = $rootScope.imgURI;
     $scope.lastCaption="";
     $scope.lastTag="";
@@ -54,7 +54,8 @@ angular.module('starter.controllers', [])
         headers: {'Content-Type': 'application/json'}
     
         });
-        $state.go(tab.dash);
+        $go.state('tab.dash')
+        
     }
 
     
@@ -70,8 +71,8 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
      $scope.lastCaption="nothing here ";
      $scope.lastTag = "";
      $scope.user= {
-              username:"nigga",
-              caption : "damn",
+              username:"yassine",
+              caption : "nice pic",
               url: $rootScope.imgURI,
               likes:5};
      $scope.send =function(){
@@ -110,7 +111,7 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
         })
     }
     $scope.takePhoto = function() {
-        console.log('takePhoto is working woohoo');
+        
         //Camera Plugin
         var options = {
             quality: 80,
@@ -126,7 +127,8 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
 
         $cordovaCamera.getPicture(options).then(function(photo){
             $rootScope.imgURI = "data:image/jpeg;base64," + photo;
-            
+            $scope.lastPhoto = "data:image/jpeg;base64," + photo;
+            $go.state(tab.post);
         })
     }
 
@@ -205,7 +207,7 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
   }]
   
   $scope.gotosearch = function() {
-    console.log("damn");
+   
     $state.go('tab.search');
 };
   $scope.chats = Chats.all();

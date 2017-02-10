@@ -1,0 +1,25 @@
+<ion-view >
+
+<ion-nav-buttons >
+<div class="bar bar-header  item-input-inset">
+<a class="mysearch" href="#/tab/chat" >
+  <label   class="mynav bar-balanced  item-input-wrapper">
+    <i class="icon ion-ios-search placeholder-icon"></i>
+    <input  type="search" placeholder="Search">
+  </label>
+ </a> 
+ </div> 
+
+</ion-nav-buttons>
+  <ion-content>
+  
+
+<div class="section" style="">
+        <div ng-repeat="items in offensiveMasteries" >
+          <img  src={{items.image}} />
+          
+          
+        </div>
+      </div>
+  </ion-content>
+</ion-view>

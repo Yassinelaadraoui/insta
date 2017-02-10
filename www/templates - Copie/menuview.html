@@ -1,0 +1,76 @@
+
+<ion-view view-title="Yassine Laadraoui" >
+
+	<ion-content>
+	<div class="row">
+	  <div class="col " ><img class="profil" src="../img/adam.jpg"><br></div>
+	  <div class="col  col1  " >
+	  	30<br>Posts
+		</div>
+		
+	  <div class="col col2 ">30<br>Followers</div>
+	  <div class="col   ">30<br>following</div>
+
+	</div>
+	<button style="margin-top: 0" class="button button-b button-light">
+	  Edit profil
+	</button>
+	<div style="margin-left: 5%; margin-top: 0%" class="row">
+		<div class="col"><h4>Yassine </h4> </div>
+
+	</div>
+	<div style="margin-left: 5%;" class="row">
+		<div> Student, IT, Moroccan <br> nothing interesting to see here <br> <br> </div>
+
+	</div>
+	<div class="bar bar-stable " style="position:relative; margin-top: 0"><h1 class="title">
+		<div class="subheader">
+		        	
+					<a class="tab-item" ui-sref="tab.account" >
+				    <i style="font-size: 30px" class="ion-grid"></i>
+				</a>
+	  			<a class="tab-item"  ui-sref="tab.tabx">
+	    			
+    				<i style="font-size: 30px" class="ion-navicon"></i>
+  
+	  			</a>
+		  			
+		</div>
+
+	</div>
+
+		<div ng-repeat="items in offensiveMasteries">
+			<div   class="item item-avatar">
+			    <img src="{{items.image}}">
+			    <h2>  ccccsd</h2>
+			    
+			    <p>November 05, 1955</p>
+  			</div>
+			<div  class="section1" style=" ">
+
+	        <div  >
+	          <img  src="{{items.image}}" />
+	          
+	          
+	        </div>
+	       
+	      </div>
+	    <div style="margin-top: -10%; width: 100%; left: 0; padding: 0px; " class="list stable-bg like-comment"> 
+	
+				<div  style="border-top: 1px solid #e4e4e4; border-bottom: 0px; font-size: 30px;padding-left: 10px; margin-bottom: 20%; "   ng-init="liked=0 " >
+    <a style="vertical-align: top"  ng-init="likes=5"  ng-click="liked=!liked;  " ><i  style="color:red;" ng-if="liked==0" class="ion-ios-heart-outline"></i> <i  style="color:red;"  ng-if="liked==1" class="ion-ios-heart"></i></a>
+   
+        <a style="vertical-align: top" ui-sref="tab.chat-detail" class="subdued"> <i class="ion-ios-chatbubble-outline"></i></a>
+    </div>
+		
+		</div>
+
+
+
+</div>
+
+	</ion-content>
+
+
+ 
+</ion-view>

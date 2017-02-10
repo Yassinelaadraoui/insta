@@ -1,0 +1,40 @@
+<ion-view  title="post" >
+	
+	<ion-content>
+		
+		<div style="border-bottom: 2px solid #e4e4e4; margin-left: 5%; width: 90%; margin-top: 10%" class="row">
+			<div class="col">
+				<img width="50%" height="50%" src="http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg">
+			</div>
+			<div class="col">
+				 <label  class="mynav mysearch  bar-balanced  item-input-wrapper">
+					 
+			   		<input ng-model="lastCaption"  type="search" placeholder="write caption">
+		  		</label>
+			</div>
+			<div class="col">
+				<img width="50%" height="50%" ng-src="{{lastPhoto}}">
+			</div>
+
+
+		</div>
+		<div class="row"><button style="width: 100%" ng-click="send()">post</button></div>
+		<div style="border-bottom: 2px solid #e4e4e4; margin-left: 5%; width: 90%;" class="row">
+			
+			<div class="col">
+				 <label  class="mynav mysearch  bar-balanced  item-input-wrapper">
+					 
+			   		<input  ng-model="lastTag" type="search" placeholder="Add Tags">
+		  		</label>
+			</div>
+			
+
+
+		</div>
+		
+		{{lastTag}}
+		<br>{{lastCaption}}
+		<br>{{imgURI}}
+
+	</ion-content>
+</ion-view>

@@ -1,0 +1,54 @@
+<ion-view data-ng-init=""  >
+<ion-nav-buttons >
+    <!-- merged -->
+    <div class="bar bar-header  ">
+
+      <div style="margin-right: 50%;">
+      <h4>Create a new Post</h4>
+    </div>
+        <a style="right:0;" ui-sref="tab.post">
+          <i style="font-size: 20px;" class="icon ion-ios-arrow-forward placeholder-icon"></i>
+         </a>
+        
+      
+    </div> 
+
+  </ion-nav-buttons>
+   <ion-content padding="true" class="manual-ios-statusbar-padding">
+    <div style="text-align: center"  >
+        <img width="300px" height="300px" ng-src="{{lastPhoto}}">
+        
+      </div>
+
+    <div class="list card" style="margin-top: 0%; text-align: center">
+
+      <div  class="item item-divider" style="padding: 5%;">
+        <h3 style="text-align: center;">Select method</h3>
+      </div>
+
+     
+        <div style="text-align: center; " class="row">
+            <div style="margin-right: 20%; margin-left: 20%" class="col">
+                <button class="button button-icon" ng-click="takePhoto()">
+                    <i class="ion-ios-camera" style="font-size: 80px;"></i><br> Camera
+                </button>
+            </div>
+
+            <div class="col">
+            
+
+                <button  class="button button-icon" ng-click="choosePhoto();"  >
+                    <i  class="ion-images" style="font-size: 80px;"></i><br> Gallery
+                </button>
+              
+            </div>
+
+        </div>
+     
+
+    </div>
+    
+
+  </ion-content>
+   
+</ion-view>

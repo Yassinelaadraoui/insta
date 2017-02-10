@@ -1,0 +1,52 @@
+
+<ion-view view-title="Yassine Laadraoui" >
+
+<ion-content>
+<div class="row">
+  <div class="col " ><img class="profil" width="50%" height="50%" src="../img/adam.jpg"><br></div>
+  <div class="col  col1  " >
+  	30<br>Posts
+	</div>
+	
+  <div class="col col2 ">30<br>Followers</div>
+  <div class="col   ">30<br>following</div>
+
+</div>
+<button ui-sref="tab.accountedit" class="button button-b button-light">
+  Edit profil
+</button>
+<div style="margin-left: 5%; margin-top: 0%" class="row">
+	<div class="col"><h4>Yassine </h4> </div>
+
+</div>
+<div style="margin-left: 5%;" class="row">
+	<div> Student, IT, Moroccan <br> nothing interesting to see here <br> <br> </div>
+
+</div>
+<div class="bar bar-stable" style="position:relative; margin-top: 0"><h1 class="title">
+	<div  class="subheader">
+	        	
+				<a class="tab-item" ui-sref="tab.account" >
+				    <i style="font-size: 30px" class="ion-grid"></i>
+				</a>
+	  			<a class="tab-item"  ui-sref="tab.tabx">
+	    			
+    				<i style="font-size: 30px" class="ion-navicon"></i>
+  
+	  			</a>
+	  			
+	</div>
+
+</h1></div>
+	<div class="section" style="margin-bottom: 10% ">
+    <div ng-repeat="items in offensiveMasteries" >
+      <img  src="{{items.image}}" />
+      
+      
+    </div>
+  </div>
+</ion-content>
+
+
+ 
+</ion-view>
