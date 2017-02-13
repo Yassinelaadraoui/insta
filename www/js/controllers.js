@@ -38,7 +38,7 @@ angular.module('starter.controllers', [])
 
 .controller('PostCtrl', function($scope ,$stateParams, $http, $rootScope, $state) {
     $scope.lastPhoto = $rootScope.imgURI;
-    $scope.lastCaption="";
+    $scope.lastCaption="caption";
     $scope.lastTag="";
     $scope.user= {
               username: "Yassine Laadraoui",
@@ -54,7 +54,7 @@ angular.module('starter.controllers', [])
         headers: {'Content-Type': 'application/json'}
     
         });
-        $go.state('tab.dash')
+        $go.state('tab.dash');
         
     }
 
@@ -128,7 +128,7 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
         $cordovaCamera.getPicture(options).then(function(photo){
             $rootScope.imgURI = "data:image/jpeg;base64," + photo;
             $scope.lastPhoto = "data:image/jpeg;base64," + photo;
-            $go.state(tab.post);
+            $state.go('tab.post');
         })
     }
 
@@ -136,6 +136,54 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
 
 }])
 .controller('SearchCtrl', function($scope) {})
+.controller('signupCtrl', function($scope, $state, $http) {
+    $scope.user = {};
+    $scope.send =function(){
+      
+        
+            
+        console.log($scope.user);
+      $http({
+      url: 'https://tranquil-coast-83560.herokuapp.com/user?data', // IP address replaced with ##'s
+      method: 'POST',
+      data: $scope.user,
+      headers: {'Content-Type': 'application/json'}
+  
+      });
+    };
+})
+.controller('signinCtrl', function($scope, $state , $http) {
+  
+   $scope.user=[{
+             username:$scope.username,
+             password:$scope.password 
+          }];
+    
+$http.get("https://tranquil-coast-83560.herokuapp.com/user")
+              .then(function(response){ 
+                  $scope.posts = response.data.data;
+
+    
+    
+            });
+ console.log($scope.user);
+ console.log($scope.username);
+    $scope.signin = function(){
+     
+        
+       for (var i = $scope.posts.length - 1; i >= 0; i--) {
+            if ($scope.posts[i].username== $scope.user.username)
+            if ($scope.posts[i].password== $scope.user.password) {
+
+                $state.go('tab.dash');
+
+            }
+         }  
+       
+        
+    };
+})
+
 .controller('ChatsCtrl', function($scope, Chats ,$state) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.

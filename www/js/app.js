@@ -51,6 +51,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',  
       }
     }
   })
+  .state('tab.signin', {
+    cache: false,
+    url: '/signin',
+    views: {
+      'tab-signin': {
+        templateUrl: 'templates/sign-in.html',
+        controller: 'signinCtrl'
+      }
+    }
+  })
+  .state('tab.signup', {
+    cache: false,
+    url: '/signup',
+    views: {
+      'tab-signup': {
+        templateUrl: 'templates/sign-up.html',
+        controller: 'signupCtrl'
+      }
+    }
+  })
    .state('tab.camera', {
     
     url: '/camera',
@@ -145,6 +165,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',  
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/signin');
 
 });
