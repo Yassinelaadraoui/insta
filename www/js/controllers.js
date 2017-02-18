@@ -2,20 +2,7 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope ,$stateParams, Chats, $http ) {
   $scope.comment = Chats.get($stateParams.chatId);
-  $scope.user= {
-    username:"yassine",
-    caption : "",
-    url: "http://www.javabeat.net/wp-content/uploads/2015/09/Express-2.jpg",
-    likes:5};
-    $scope.send =function(){
-      $http({
-      url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
-      method: 'POST',
-      data: $scope.user,
-      headers: {'Content-Type': 'application/json'}
-  
-});
-    };
+ 
    $scope.fetch =function(){
   
   $http.get("https://tranquil-coast-83560.herokuapp.com/weather")
@@ -23,6 +10,17 @@ angular.module('starter.controllers', [])
 
           
     $scope.posts = response.data.data;
+    console.log($scope.posts);
+
+    
+    
+  });
+  $http.get("https://image-upload-html-heroku-demo.herokuapp.com/upload")
+  .then(function(response){ 
+
+          
+    $scope.post = response.data;
+    console.log($scope.post);
 
     
     
@@ -38,41 +36,13 @@ angular.module('starter.controllers', [])
 
 .controller('PostCtrl', function($scope ,$stateParams, $http, $rootScope, $state) {
     $scope.lastPhoto = $rootScope.imgURI;
-    $scope.lastCaption="caption";
+    $scope.lastCaption="this is a post #caption ";
     $scope.lastTag="";
-    $scope.user= {
-              username: "Yassine Laadraoui",
-              caption : $scope.lastCaption,
-              url: $scope.lastPhoto,
-              likes:5};
-    $scope.send =function(){
-
-        $http({
-        url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
-        method: 'POST',
-        data: $scope.user,
-        headers: {'Content-Type': 'application/json'}
-    
-        });
-        $go.state('tab.dash');
-        
-    }
-
-    
-})
-
-.controller('CameraCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$rootScope', '$state',
-// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats) {
-     $scope.lastPhoto ="http://host.sonspring.com/domgallery/img/placeholder.gif";
-     
-     $scope.lastCaption="nothing here ";
+    $scope.lastCaption="nothing here ";
      $scope.lastTag = "";
      $scope.user= {
               username:"yassine",
-              caption : "nice pic",
+              caption : "nice pic #yoo",
               url: $rootScope.imgURI,
               likes:5};
      $scope.send =function(){
@@ -84,6 +54,18 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
   
       });
     };
+
+    
+})
+
+.controller('CameraCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$rootScope', '$state',
+// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats) {
+     $scope.lastPhoto ="http://host.sonspring.com/domgallery/img/placeholder.gif";
+     
+     
      
      
     $scope.choosePhoto = function() {
@@ -128,7 +110,7 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
         $cordovaCamera.getPicture(options).then(function(photo){
             $rootScope.imgURI = "data:image/jpeg;base64," + photo;
             $scope.lastPhoto = "data:image/jpeg;base64," + photo;
-            $state.go('tab.post');
+            $state.go(tab.post);
         })
     }
 

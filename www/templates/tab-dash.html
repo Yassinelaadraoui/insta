@@ -18,8 +18,8 @@
     <img  width="100%" height="80%" src="{{post.url}}">
     <div style="padding-left: 10px; ">
       <h4 style="text-align: left;">{{likes + liked}} Likes</h4>
-      <p style="">
-        {{post.caption}}
+      <p  ng-bind-html="post.caption | tweetLinky" >
+     
       </p>
       <h2 ui-sref="tab.chat-detail" style="text-align: left; font-size: 15px;">See Comments</h2>
     </div>
