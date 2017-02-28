@@ -1,4 +1,16 @@
 angular.module('starter.services', [])
+.factory('myService', function(){
+    var myjsonObj = null;//the object to hold our data
+     return {
+     getJson:function(){
+       return myjsonObj;
+     },
+     setJson:function(value){
+      myjsonObj = value;
+     }
+     }
+
+})
 
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array

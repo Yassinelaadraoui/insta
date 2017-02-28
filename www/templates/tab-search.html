@@ -1,4 +1,4 @@
-<ion-view view-title="">
+<ion-view ng-controller="SearchCtrl" view-title="">
 	<ion-nav-buttons >
 		<div class="bar bar-header  item-input-inset">
 
@@ -6,8 +6,10 @@
 			  <a href=" #/tab/chats">
 			    <i class="icon ion-ios-arrow-back placeholder-icon"></i>
 			   </a>
-			   <input  type="search" placeholder="Search">
+			   <input ng-model="name.searched"  type="search" placeholder="Search">
+			   
 		  </label>
+		  <button ng-click="look()">search</button>
 		  
 		</div> 
 
@@ -29,6 +31,25 @@
 				</a>
 				
 			</div>
+
 	</ion-tabs>
+	<ion-content>
+	<div  class="section" style="margin-top: 10%;   ">
+
+		<div ng-click="gotoview1({{$index}})" style=" border-bottom: 1px solid grey ; padding: 15px;" ng-repeat="user in searchedusers">
+			
+			<h1  style="  font-size: 20px ;text-align: left; overflow-x: left; ">{{user.username}}</h1>
+		</div>
+	</div>
+	<div  class="section" >
+    <div ng-repeat="items in searchedposts" >
+
+      <img ng-show="items.url"  ng-click="gotoview({{$index}})" src="{{items.url}}" />
+      
+      
+    </div>
+  </div>
+		
+	</ion-content>
 	
 </ion-view>

@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view ng-controller="CameraCtrl" >
 <ion-nav-buttons >
     <!-- merged -->
     <div class="bar bar-header  ">
@@ -6,7 +6,8 @@
       <div style="margin-right: 50%;">
       <h4>Create a new Post</h4>
     </div>
-        <a style="right:0;" ui-sref="tab.post">
+        <a style="right:0;" ui-sref="tab.post"  >
+         
           <i style="font-size: 20px;" class="icon ion-ios-arrow-forward placeholder-icon"></i>
          </a>
         
@@ -14,7 +15,9 @@
     </div> 
 
   </ion-nav-buttons>
+
    <ion-content padding="true" class="manual-ios-statusbar-padding">
+   
     <div style="text-align: center"  >
         <img width="300px" height="300px" ng-src="{{lastPhoto}}">
         
@@ -23,7 +26,7 @@
     <div class="list card" style="margin-top: 0%; text-align: center">
 
       <div  class="item item-divider" style="padding: 5%;">
-        <h3 style="text-align: center;">Select method</h3>
+        <h3 style="text-align: center;">{{url}} {{uploadResults}}</h3>
       </div>
 
      
@@ -48,6 +51,18 @@
 
     </div>
     
+    <div class="row">
+      <button class="button button-balanced" ng-click="uploadPhoto()">
+            Test server connection
+          </button>
+          <div>
+            {{uploadResults}}
+    {{url}}
+          </div>
+    </div>
+    <br>
+    {{uploadResults}}
+    {{url}}
 
   </ion-content>
    

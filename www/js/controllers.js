@@ -1,9 +1,28 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope ,$stateParams, Chats, $http ) {
+.controller('DashCtrl', function($scope ,$stateParams, Chats, $http, $state ) {
   $scope.comment = Chats.get($stateParams.chatId);
- 
+  $scope.followers_only=[{}];
+  $scope.postusername = "";
+  $scope.searches = function(stat){
+    console.log(stat);
+    $scope.search = { searched : stat} ;
+    console.log("ddsd");
+      $http({
+      url: 'https://tranquil-coast-83560.herokuapp.com/searchedtag', // IP address replaced with ##'s
+      method: 'POST',
+      data: $scope.search,
+      headers: {'Content-Type': 'application/json'}
+  
+      });
+      $state.go('tab.chat-deta');
+
+      
+
+  };
+
    $scope.fetch =function(){
+  
   
   $http.get("https://tranquil-coast-83560.herokuapp.com/weather")
   .then(function(response){ 
@@ -12,16 +31,27 @@ angular.module('starter.controllers', [])
     $scope.posts = response.data.data;
     console.log($scope.posts);
 
+
     
     
   });
-  $http.get("https://image-upload-html-heroku-demo.herokuapp.com/upload")
+  $scope.test = function(tests){
+       for (var i = followers_only.length - 1; i >= 0; i--) {
+         if ($scope.followers_only == tests) {
+          return 1 ;
+         }else return 0;
+       }
+  };
+  $http.get("https://tranquil-coast-83560.herokuapp.com/user")
   .then(function(response){ 
 
           
-    $scope.post = response.data;
-    console.log($scope.post);
-
+    $scope.user = response.data.data;
+    $scope.followers_only = $scope.user[0].following;
+    console.log($scope.followers_only);
+    
+    
+   
     
     
   });
@@ -34,17 +64,54 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PostCtrl', function($scope ,$stateParams, $http, $rootScope, $state) {
-    $scope.lastPhoto = $rootScope.imgURI;
+.controller('PostCtrl', function($scope ,$stateParams, $http, $rootScope, $state , $cordovaFileTransfer) {
+    $scope.lastPhoto ="https://jpeg.org/images/jpeg-home.jpg";
+
     $scope.lastCaption="this is a post #caption ";
     $scope.lastTag="";
     $scope.lastCaption="nothing here ";
      $scope.lastTag = "";
+     $scope.url="sddsd";
+     $scope.uploadResults="sqssd";
+      $scope.testConnection = function()
+    {
+        $http.get('https://peaceful-refuge-78844.herokuapp.com/').then(function(result){
+            $scope.serverConnection = "Connection OK";
+        },
+        function(err){
+            $scope.serverConnection = "Connection fail";
+        });
+
+    }
+      
+           $scope.uploadPhoto = function()
+    {
+       var options = new FileUploadOptions()
+        options.fileKey = "image";
+        $cordovaFileTransfer.upload('http://image-upload-example-server.herokuapp.com/upload', $scope.lastPhoto, options).then(function(result) {
+            console.log("File upload complete");
+            console.log(result);
+            $scope.url = result;
+            $scope.uploadResults = "Upload completed successfully" 
+                       
+        }, function(err) {
+            console.log("File upload error");
+            console.log(err);
+            $scope.uploadResults = "Upload failed"                        
+        }, function (progress) {
+            // constant progress updates
+            console.log(progress);
+        });
+        
+       
+    } 
      $scope.user= {
-              username:"yassine",
+              username:"oulu",
               caption : "nice pic #yoo",
-              url: $rootScope.imgURI,
-              likes:5};
+              url: $scope.url,
+              likes:5,
+              tag: "#yassine"};
+     
      $scope.send =function(){
       $http({
       url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
@@ -53,23 +120,42 @@ angular.module('starter.controllers', [])
       headers: {'Content-Type': 'application/json'}
   
       });
-    };
+    }
 
     
 })
 
-.controller('CameraCtrl', ['$scope', '$stateParams', '$cordovaCamera', '$rootScope', '$state',
+.controller('CameraCtrl' ,['$scope', '$stateParams', '$cordovaCamera', '$rootScope', '$state','$cordovaFileTransfer',
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats) {
-     $scope.lastPhoto ="http://host.sonspring.com/domgallery/img/placeholder.gif";
+function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats , $cordovaFileTransfer) {
+     $scope.lastPhoto ="https://jpeg.org/images/jpeg-home.jpg";
+     $scope.uploadResults="sdsdds"
      
-     
-     
-     
+    
+    
+      $scope.uploadPhoto = function()
+    {
+      var options = new FileUploadOptions()
+        options.fileKey = "image";
+
+        $cordovaFileTransfer.upload('https://mighty-beach-20789.herokuapp.com/upload', $scope.lastPhoto, options).then(function(result) {
+            console.log("File upload complete");
+            console.log(result);
+            $scope.uploadResults = "Upload completed successfully"            
+        }, function(err) {
+            console.log("File upload error");
+            console.log(err);
+            $scope.uploadResults = "Upload failed"                           
+        }, function (progress) {
+            // constant progress updates
+            console.log(progress);
+        });
+       
+    } 
     $scope.choosePhoto = function() {
-        
+          
 
         //Gallery
         var options = {
@@ -85,12 +171,15 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
         };
 
         $cordovaCamera.getPicture(options).then(function(photo){
-            $rootScope.imgURI = "data:image/jpeg;base64," + photo;
-            $scope.lastPhoto = "data:image/jpeg;base64," + photo;
-           $go.state(tab.post);
-
+            $rootScope.imgURI =  photo;
+            $scope.lastPhoto = photo;
+            
+            $scope.url=  uploadPhoto();
             
         })
+
+        
+        
     }
     $scope.takePhoto = function() {
         
@@ -110,14 +199,159 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
         $cordovaCamera.getPicture(options).then(function(photo){
             $rootScope.imgURI = "data:image/jpeg;base64," + photo;
             $scope.lastPhoto = "data:image/jpeg;base64," + photo;
-            $state.go(tab.post);
         })
+        
     }
 
     
 
 }])
-.controller('SearchCtrl', function($scope) {})
+.controller('SearchedCtrl', function($scope, $http, $rootScope , $state  ) {
+    $scope.user= [{}];
+    $http.get("https://tranquil-coast-83560.herokuapp.com/searchedpost")
+  .then(function(response){ 
+
+          
+    $scope.search = response.data.data;
+   console.log($scope.search[search.length - 1].username);
+    
+    
+  });
+  console.log($scope.search);
+
+  $scope.refresh = function(){
+    $http.get("https://tranquil-coast-83560.herokuapp.com/searchedpost")
+  .then(function(response){ 
+
+          
+    $scope.search = response.data.data;
+   console.log($scope.search[search.length - 1].username);
+    
+    
+  });
+  }
+  $scope.refresh1 = function(){
+     $http.get("https://tranquil-coast-83560.herokuapp.com/searchedpost")
+  .then(function(response){ 
+
+          console.log("done");
+    $scope.user = response.data.data;
+   console.log($scope.user[user.length - 1].username);
+    
+    
+  });
+  }
+     
+})
+.controller('SearchCtrl', function($scope, $http, $rootScope , $state  ) {
+$http.get("https://tranquil-coast-83560.herokuapp.com/weather")
+  .then(function(response){ 
+
+          
+    $scope.user = response.data.data;
+   
+    
+    
+  });
+  $http.get("https://tranquil-coast-83560.herokuapp.com/searchedtag")
+  .then(function(response){ 
+
+          
+    $scope.variable = response.data.data;
+
+    $scope.leg = $scope.variable[$scope.variable.length-1].searched;
+    console.log($scope.leg);
+
+
+    
+    
+  });
+  $scope.name = { searched : "#oulu"
+  };
+  $scope.searchedposts = [{
+
+  }];
+  $scope.searchedusers=[{
+
+  }];
+ $scope.clickimg = [{
+
+      }];
+  $scope.gotoview = function(index){
+     
+       $scope.clickimg.push($scope.searchedposts[index]);
+       console.log($scope.searchedposts);
+      
+       $http({
+      url: 'https://tranquil-coast-83560.herokuapp.com/searchedpost', // IP address replaced with ##'s
+      method: 'POST',
+      data: $scope.searchedposts[index],
+      headers: {'Content-Type': 'application/json'}
+  
+      });
+       console.log($scope.clickimg);
+       console.log($scope.clickimg[1].url);
+       $state.go('tab.searchedpost')
+  };
+  $scope.gotoview1 = function(index){
+     
+       $scope.clickimg.push($scope.searchedusers[index]);
+       console.log($scope.searchedusers);
+      
+       $http({
+      url: 'https://tranquil-coast-83560.herokuapp.com/searchedpost', // IP address replaced with ##'s
+      method: 'POST',
+      data: $scope.searchedusers[index],
+      headers: {'Content-Type': 'application/json'}
+  
+      });
+       console.log($scope.clickimg);
+       console.log($scope.clickimg[1].url);
+       $state.go('tab.searcheduser')
+  };
+  $scope.look = function(){
+    $http.get("https://tranquil-coast-83560.herokuapp.com/user")
+  .then(function(response){ 
+
+          
+    $scope.allusers = response.data.data;
+   for (var i = 0 ; i < $scope.allusers.length; i++) {
+        
+        if($scope.name.searched === $scope.allusers[i].username ){ 
+          console.log($scope.allusers[i].username);
+          
+          $scope.searchedusers.push($scope.allusers[i]);
+          console.log();
+          
+        }
+            
+     };
+    
+    
+  });
+  
+    $http.get("https://tranquil-coast-83560.herokuapp.com/weather")
+  .then(function(response){ 
+
+          
+    $scope.user = response.data.data;
+   for (var i = 0 ; i < $scope.user.length; i++) {
+        console.log($scope.user[i].tag);
+        if($scope.name.searched === $scope.user[i].tag ){ 
+          $scope.searchedposts.push($scope.user[i]);
+          console.log($scope.searchedposts);
+        }
+            
+     };
+  
+    
+    
+  });
+    
+  };   
+
+
+})
 .controller('signupCtrl', function($scope, $state, $http) {
     $scope.user = {};
     $scope.send =function(){
@@ -134,6 +368,7 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
       });
     };
 })
+
 .controller('signinCtrl', function($scope, $state , $http) {
   
    $scope.user=[{
@@ -156,7 +391,8 @@ $http.get("https://tranquil-coast-83560.herokuapp.com/user")
        for (var i = $scope.posts.length - 1; i >= 0; i--) {
             if ($scope.posts[i].username== $scope.user.username)
             if ($scope.posts[i].password== $scope.user.password) {
-
+                localStorage.setItem("username", $scope.posts[i].username);
+                
                 $state.go('tab.dash');
 
             }
@@ -298,11 +534,27 @@ $http.get("https://tranquil-coast-83560.herokuapp.com/user")
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('AccountCtrl', function($scope , $http) {
+   $http.get("https://tranquil-coast-83560.herokuapp.com/user")
+  .then(function(response){ 
+    
+    for (var i = 0; i <10; i++) {
+        console.log(response.data.data[i].username);  
+            if (response.data.data[i].username == "yassinelaadraoui") { console.log("bingo");
+             $scope.user = response.data.data[i];
+             console.log($scope.user);
+             }
+          }      
+   
+   
+   
+    
+    
+  });
   $scope.settings = {
     enableFriends: true
   };
-  $scope.offensiveMasteries = [{
+  /*$scope.offensiveMasteries = [{
     image: "http://img4.wikia.nocookie.net/__cb20131121235548/leagueoflegends/images/d/d5/Executioner_mastery_s3.png",
     currentPoint: "0",
     endPoint: "1"
@@ -350,5 +602,5 @@ $http.get("https://tranquil-coast-83560.herokuapp.com/user")
     image: "http://img4.wikia.nocookie.net/__cb20131121235724/leagueoflegends/images/5/58/Butcher_mastery_s4.png",
     currentPoint: "0",
     endPoint: "1"
-  }]
+  }]*/
 });

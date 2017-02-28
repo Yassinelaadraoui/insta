@@ -20,7 +20,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',  
 
       // replace #hashtags
       var replacePattern1 = /(^|\s)#(\w*[a-zA-Z_]+\w*)/gim;
-      replacedText = replacedText.replace(replacePattern1, '$1<a href="https://twitter.com/search?q=%23$2"' + targetAttr + '>#$2</a>');
+      replacedText = replacedText.replace(replacePattern1, '$1<a ' + targetAttr + '>#$2</a>');
 
       // replace @mentions
       var replacePattern2 = /(^|\s)\@(\w*[a-zA-Z_]+\w*)/gim;
@@ -83,6 +83,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',  
       'tab-signin': {
         templateUrl: 'templates/sign-in.html',
         controller: 'signinCtrl'
+      }
+    }
+  })
+  .state('tab.searcheduser', {
+    cache: false,
+    url: '/searcheduser',
+    views: {
+      'tab-searcheduser': {
+        templateUrl: 'templates/searcheduser.html',
+        controller: 'SearchedCtrl'
+      }
+    }
+  })
+  .state('tab.searchedpost', {
+    cache: false,
+    url: '/searchedpost',
+    views: {
+      'tab-searchedpost': {
+        templateUrl: 'templates/searchedpost.html',
+        controller: 'SearchedCtrl'
       }
     }
   })
@@ -150,7 +170,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services',  
     })
     .state('tab.chat-deta', {
       cache: false,
-      url: '/chat',
+      url: '/chat/:name',
+      params:{
+        param1:null
+      },
       views: {
         'tab-chats': {
           templateUrl: 'templates/tab-search.html',

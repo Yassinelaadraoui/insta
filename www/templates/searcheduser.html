@@ -1,26 +1,26 @@
 
-<ion-view   view-title="{{user.username}}" >
+<ion-view ng-controller="SearchedCtrl" data-ng-init="refresh1()"  view-title="{{user.username}}" >
 
 <ion-content>
 <div class="row">
   <div class="col " ><img class="profil" width="50%" height="50%" src="http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg"><br></div>
   <div class="col  col1  " >
-  	{{user.count.posts}}<br>Posts
+  	{{user[user.length - 1].count.posts}}<br>Posts
 	</div>
 	
-  <div class="col col2 ">{{user.count.follower}}<br>Followers</div>
-  <div class="col   ">{{user.count.following}}<br>following</div>
+  <div class="col col2 ">{{user[user.length - 1].count.follower}}<br>Followers</div>
+  <div class="col   ">{{user[user.length - 1].count.following}}<br>following</div>
 
 </div>
 <button ui-sref="tab.accountedit" class="button button-b button-light">
   Edit profil
 </button>
 <div style="margin-left: 5%; margin-top: 0%" class="row">
-	<div class="col"><h4>{{user.username}} </h4> </div>
+	<div class="col"><h4>{{user[user.length - 1].username}} </h4> </div>
 
 </div>
 <div style="margin-left: 5%;" class="row">
-	<div> {{user.bio}} <br> <br> </div>
+	<div> {{user[user.length - 1].bio}} <br> <br> </div>
 
 </div>
 <div class="bar bar-stable" style="position:relative; margin-top: 0"><h1 class="title">
@@ -39,8 +39,8 @@
 
 </h1></div>
 	<div class="section" style="margin-bottom: 10% ">
-    <div ng-repeat="items in user.posts" >
-      <img  src="{{items.url}}" />
+    <div ng-repeat="items in user[user.length - 1].posts" >
+      <img  ng-src="{{items.url}}" />
       
       
     </div>

@@ -1,10 +1,10 @@
-<ion-view ng-controller="PostCtrl"  title="post" >
+<ion-view ng-controller="PostCtrl" data-ng-init="" title="post" >
 	
 	<ion-content>
 		
 		<div style="border-bottom: 2px solid #e4e4e4; margin-left: 5%; width: 90%; margin-top: 10%" class="row">
 			<div class="col">
-				<img width="50%" height="50%" src="http://www.aspirehire.co.uk/aspirehire-co-uk/_img/profile.svg">
+				{{$scope.url}}
 			</div>
 			<div class="col">
 				 <label  class="mynav mysearch  bar-balanced  item-input-wrapper">
@@ -12,15 +12,26 @@
 			   		<input ng-model="$scope.lastCaption"  type="search" placeholder="write caption">
 			   		
 		  		</label>
-		  		<button class="button button-outline button-positive"  ng-click="send()">post</button>
+		  		
 			</div>
-			<div class="col">
-				<img width="50%" height="50%" ng-src="{{lastPhoto}}">
-			</div>
+			<button class="button button-outline button-positive"  ng-click="uploadPhoto()">post</button>
+
+			
 
 
 		</div>
-		<div class="row"></div>
+		
+		<div class="row">
+			<div class="col">
+		 		{{uploadResults}}
+				
+			</div>
+			<div class="col">
+		 		{{url}}
+				
+			</div>
+			
+		</div>
 		<div style="border-bottom: 2px solid #e4e4e4; margin-left: 5%; width: 90%;" class="row">
 			
 			<div class="col">
@@ -34,8 +45,18 @@
 
 
 		</div>
-		
+		<div class="row">
+			<button class="button button-balanced" ng-click="testConnection()">
+	          Test server connection
+	        </button>
+	        <div>
+	          {{ serverConnection }} {{lastPhoto}}
+	        </div>
+		</div>
+		<br>
+		{{lastPhoto}}
 		
 
 	</ion-content>
+
 </ion-view>

@@ -1,0 +1,28 @@
+<ion-view  data-ng-init=" refresh()"     style=" " view-title="searchedposts">
+
+<div  style=" margin-top: 100px; border-right: 0px;border-left: 0px; min-width: 100%;" >
+  <div  style="background-color: #f7f8f9"  class="item item-avatar">
+    <img  src="{{search[search.length - 1].url}}">
+
+    <h2  > {{search[search.length - 1].username}}   </h2>
+    
+    <p >November 05, 1955</p>
+  </div>
+
+  <div  style="min-width: 100%; padding: 0px; left: 0"  class="item item-body">
+    <img  width="100%" height="80%" src="{{search[search.length - 1].url}}">
+    <div style="padding-left: 10px; ">
+      <h4 style="text-align: left;">{{likes + liked}} Likes</h4>
+      <p  ng-bind-html=" {{search[search.length - 1].caption}}" >
+     
+      </p>
+      <h2 ui-sref="tab.chat-detail" style="text-align: left; font-size: 15px;">See Comments</h2>
+    </div>
+    <div  style="border-top: 1px solid #e4e4e4; border-bottom: 0px; font-size: 30px;padding-left: 10px; margin-bottom: 20%; "   ng-init="liked=0 " >
+    <a style="vertical-align: top"  ng-init="likes=5"  ng-click="liked=!liked;  " ><i  style="color:red;" ng-if="liked==0" class="ion-ios-heart-outline"></i> <i  style="color:red;"  ng-if="liked==1" class="ion-ios-heart"></i></a>
+   
+        <a style="vertical-align: top" ui-sref="tab.chat-detail" class="subdued"> <i class="ion-ios-chatbubble-outline"></i></a>
+    </div>
+  </div>
+</div>
+</ion-view>
