@@ -65,7 +65,7 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PostCtrl', function($scope ,$stateParams, $http, $rootScope, $state , $cordovaFileTransfer) {
-    $scope.lastPhoto ="https://jpeg.org/images/jpeg-home.jpg";
+    
 
     $scope.lastCaption="this is a post #caption ";
     $scope.lastTag="";
@@ -73,35 +73,26 @@ angular.module('starter.controllers', [])
      $scope.lastTag = "";
      $scope.url="sddsd";
      $scope.uploadResults="sqssd";
-      $scope.testConnection = function()
-    {
-        $http.get('https://peaceful-refuge-78844.herokuapp.com/').then(function(result){
-            $scope.serverConnection = "Connection OK";
-        },
-        function(err){
-            $scope.serverConnection = "Connection fail";
-        });
-
-    }
+     
       
+          $scope.Photo ="https://jpeg.org/images/jpeg-home.jpg";
            $scope.uploadPhoto = function()
     {
-       var options = new FileUploadOptions()
+       
+       var options = new FileUploadOptions();
         options.fileKey = "image";
-        $cordovaFileTransfer.upload('http://image-upload-example-server.herokuapp.com/upload', $scope.lastPhoto, options).then(function(result) {
-            console.log("File upload complete");
-            console.log(result);
-            $scope.url = result;
-            $scope.uploadResults = "Upload completed successfully" 
+        $cordovaFileTransfer.upload('https://mighty-beach-20789.herokuapp.com/upload', $scope.Photo, options).then(function(result) {
+            
+
+            $scope.uploadResults = "Upload completed successfully" ;
                        
         }, function(err) {
-            console.log("File upload error");
-            console.log(err);
-            $scope.uploadResults = "Upload failed"                        
+            
+            $scope.uploadResults = err;                       
         }, function (progress) {
             // constant progress updates
             console.log(progress);
-        });
+        })
         
        
     } 
@@ -112,15 +103,7 @@ angular.module('starter.controllers', [])
               likes:5,
               tag: "#yassine"};
      
-     $scope.send =function(){
-      $http({
-      url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
-      method: 'POST',
-      data: $scope.user,
-      headers: {'Content-Type': 'application/json'}
-  
-      });
-    }
+    
 
     
 })
@@ -132,12 +115,20 @@ angular.module('starter.controllers', [])
 function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats , $cordovaFileTransfer) {
      $scope.lastPhoto ="https://jpeg.org/images/jpeg-home.jpg";
      $scope.uploadResults="sdsdds"
-     
+      $scope.send =function(){
+      $http({
+      url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
+      method: 'POST',
+      data: $scope.user,
+      headers: {'Content-Type': 'application/json'}
+  
+      });
+    }
     
     
       $scope.uploadPhoto = function()
     {
-      var options = new FileUploadOptions()
+      var options = new FileUploadOptions();
         options.fileKey = "image";
 
         $cordovaFileTransfer.upload('https://mighty-beach-20789.herokuapp.com/upload', $scope.lastPhoto, options).then(function(result) {
@@ -174,7 +165,7 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
             $rootScope.imgURI =  photo;
             $scope.lastPhoto = photo;
             
-            $scope.url=  uploadPhoto();
+            uploadPhoto(lastPhoto);
             
         })
 
