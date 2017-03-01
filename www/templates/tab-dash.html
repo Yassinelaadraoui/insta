@@ -6,7 +6,7 @@
   <ion-content  class="">
     
     <div  ng-repeat="post in posts | orderBy:'$index':true"    class="list card-clear">
-<div ng-if="post.username == followers_only" style=" border-right: 0px;border-left: 0px; min-width: 100%;" >
+<div ng-if="post.username == followers_only || post.username=='yassinelaadraoui'" style=" border-right: 0px;border-left: 0px; min-width: 100%;" >
   <div  style="background-color: #f7f8f9"  class="item item-avatar">
     <img  src="{{post.url}}">
 

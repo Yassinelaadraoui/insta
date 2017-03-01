@@ -19,14 +19,14 @@
    <ion-content padding="true" class="manual-ios-statusbar-padding">
    
     <div style="text-align: center"  >
-        <img width="300px" height="300px" ng-src="{{lastPhoto}}">
+        <img width="300px" height="300px" ng-src="{{last}}">
         
       </div>
 
     <div class="list card" style="margin-top: 0%; text-align: center">
 
       <div  class="item item-divider" style="padding: 5%;">
-        <h3 style="text-align: center;">{{url}} {{uploadResults}}</h3>
+        <h3 style="text-align: center;"></h3>
       </div>
 
      
@@ -51,16 +51,22 @@
 
     </div>
     
-    <div class="list">
+    <div style="margin-bottom: 100px;"  class="list">
   <label class="item item-input">
-    <span class="input-label">Username</span>
-    <input type="text">
+    <span class="input-label">caption</span>
+    <input ng-model="postdata.caption" type="text">
   </label>
+
   <label class="item item-input">
-    <span class="input-label">Password</span>
-    <input type="text">
+    <span class="input-label">tags</span>
+    <input ng-model="postdata.tag" type="text">
   </label>
+ <button style="margin-bottom: 5%;" ng-click="send()" class="button button-positive item">
+  send
+</button>
 </div>
+
+
 
   </ion-content>
    

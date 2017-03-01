@@ -108,25 +108,17 @@ angular.module('starter.controllers', [])
     
 })
 
-.controller('CameraCtrl' ,['$scope', '$stateParams', '$cordovaCamera', '$rootScope', '$state','$cordovaFileTransfer',
+.controller('CameraCtrl' ,
 // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats , $cordovaFileTransfer) {
-     $scope.lastPhoto ="https://jpeg.org/images/jpeg-home.jpg";
-     $scope.uploadResults="sdsdds"
-      $scope.send =function(){
-      $http({
-      url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
-      method: 'POST',
-      data: $scope.user,
-      headers: {'Content-Type': 'application/json'}
-  
-      });
-    }
+     $scope.lastPhoto="";
+     $scope.last= "";
+     
     
     
-      $scope.uploadPhoto = function()
+     /* $scope.uploadPhoto = function()
     {
       var options = new FileUploadOptions();
         options.fileKey = "image";
@@ -144,7 +136,7 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
             console.log(progress);
         });
        
-    } 
+    } */
     $scope.choosePhoto = function() {
           
 
@@ -162,10 +154,11 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
         };
 
         $cordovaCamera.getPicture(options).then(function(photo){
-            $rootScope.imgURI =  photo;
-            $scope.lastPhoto = photo;
+            $rootScope.imgURI = "data:image/jpeg;base64,"+ photo;
+            $scope.last ="data:image/jpeg;base64,"+ photo;
+             
             
-            uploadPhoto(lastPhoto);
+            
             
         })
 
@@ -189,14 +182,38 @@ function ($scope, $stateParams, $cordovaCamera, $rootScope, $state, $http, Chats
 
         $cordovaCamera.getPicture(options).then(function(photo){
             $rootScope.imgURI = "data:image/jpeg;base64," + photo;
-            $scope.lastPhoto = "data:image/jpeg;base64," + photo;
+            $scope.last = "data:image/jpeg;base64," + photo;
         })
         
     }
-
+    $scope.postdata = {
+      username: "yassinelaadraoui",
+      caption: "somecaption",
+      url: $scope.last,
+      likes: 5,
+      tag: "#life"
+    };
+      $scope.send =function(){
+        
+          console.log("damn");
+          if ($scope.last != "")
+          $http({
+          url: 'https://tranquil-coast-83560.herokuapp.com/weather?data=', // IP address replaced with ##'s
+          method: 'POST',
+          data: {
+            username: "yassinelaadraoui",
+      caption: $scope.postdata.caption,
+      url: $scope.last,
+      likes: 5,
+      tag:  $scope.postdata.tag
+          },
+          headers: {'Content-Type': 'application/json'}
+      
+          });
+      }
     
 
-}])
+})
 .controller('SearchedCtrl', function($scope, $http, $rootScope , $state  ) {
     $scope.user= [{}];
     $http.get("https://tranquil-coast-83560.herokuapp.com/searchedpost")
